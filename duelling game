@@ -1,0 +1,126 @@
+#duelling_game
+import random
+
+#player typer- king, queen, knight, joker
+king={"health":89,"attack":7,"defence":1}
+queen={"health":100,"attack":10,"defence":7}
+knight={"health":75,"attack":15,"defence":9}
+joker={"health":76,"attack":8,"defence":11}
+Char_Type={"King":king,"Queen":queen,"Knight":knight,"Joker":joker}
+
+class Character:
+    #_ in begining means private access
+    #still can be used outside the class but since _ is used it is adviced not to use outside the class
+    _health=0
+    _attack=0
+    _defence=0
+
+    #__init__()(constructor), __str__()(for printing the character type) 'pre-defined magic fxns' of python
+    def __init__(self, char_type):
+        self._char_type=char_type
+        self._assign_attributes()
+    
+    def __str__(self):
+        return self._char_type
+
+    def _assign_attributes(self):   #assigning values based on character type
+        stats=Char_Type[self._char_type]
+        self._health=stats["health"]
+        self._attack=stats["attack"]
+        self._defence=stats["defence"]
+    
+    #we want these fxns to be inherited and used by sub classes
+    #so not using _ in start
+    def attack(self):   #getter fxns    accessors
+        return self._attack
+        
+    def take_damage(self,damage):
+        self._damage=damage
+        if self._defence_success(): 
+            print(" ")''
+            print(f"''''''''''''''''' Wow a nice dodge by {self._char_type} ''''''''''''''''")
+            
+        else:
+            self._health-=damage
+            #f is for formating
+            print(f"{self._char_type} took {damage} damage")
+            print(self._healthstatus(self._health))
+
+    def _defence_success(self): #self,damage
+        #each defence point gives 7% probability that attack is missed
+        defence_chance=self._defence*7
+        print(" ")
+        print(f"{self._char_type} gets defence points {defence_chance}")
+        defence_roll=random.randint(1,100)
+        if (defence_roll<=defence_chance):
+            return True
+        return False
+    
+    #to show the health status of the players after attacks and defences
+    def _healthstatus(self,health):
+        self._health=health
+
+        #if the life gets low giving both players fair +5 in their health
+        if (health>=1) and (health<=20):
+            self._health+=5
+            print(" ")
+            print(f"+++++++++++++++++++ Life +5 for {self._char_type} +++++++++++++++++++")
+            return(f"------------------------ {self._char_type} Health Status <3 : {self._health} ------------------------")
+        else:
+            return(f"------------------------ {self._char_type} Health Status <3 : {self._health} ------------------------")
+    
+    def is_dead(self):
+        return self._health <= 0
+#end of Character class
+
+def character_fight(player1,player2):
+    Player1= Character(player1)
+    Player2= Character(player2)
+
+    coin_toss= random.randint(1,2)
+    if coin_toss==1:
+        first, second= Player1,Player2
+    else:
+        first,second=Player1,Player2
+    
+    while True:
+        if attack_character(first,second): 
+            return str(first)
+        elif attack_character(second,first):
+            return str(second)
+        
+def attack_character(first,second):
+    damage=first.attack()
+    second.take_damage(damage)
+    if second.is_dead():
+        return True
+    return False
+
+def main():
+    
+    player1=input("Player 1 -->Enter your character type: ").title()
+    player2=input("Player 2 -->Enter your character type: ").title()
+
+    winner= character_fight(player1,player2)
+    if (winner==player1):
+        print(" ")
+        print("~ ~ And The Winner is ~ ~")
+        print("! ! Drum Rolls ! !")
+        print(" ")
+        print(winner)
+        print("... It was a tough but great match between the players ...")
+        print(f"Well Played {player2}")
+    else: 
+        print(" ")
+        print("~ ~ And The Winner is ~ ~")
+        print("! ! Drum Rolls ! !")
+        print(" ")
+        print(winner)
+        print("... It was a tough but great match between the players ...")
+        print(f"Well Played {player1}")
+    
+
+#automatically calling main fxn
+#__name__ magic fxn
+if __name__=="__main__":
+    main()      
