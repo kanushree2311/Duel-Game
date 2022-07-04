@@ -1,5 +1,5 @@
 # FULL STACK DEVELOPMENT WITH PYTHON- TECHWAVE 
-Hi I made this project Duelling Game during the 7 Days Free Bootcamp, conducted by <b> TechWave </b>.
+Hi I made this project during Full Stack development with Python Training program, conducted by <b>TechWave</b>.
 
 ## About the project:
 The project is about a duel game with 4 different players- King, Queen, Knight, Joker. Each player have health, attack, defence points stored in the form of a 
