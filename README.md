@@ -3,7 +3,7 @@ Hi I made this project Duelling Game during the 7 Days Free Bootcamp, conducted 
 
 ## About the project:
 The project is about a duel game with 4 different players- King, Queen, Knight, Joker. Each player have health, attack, defence points stored in the form of a 
-dictionary individually. Using the concept of Object Oriented Programming in python, a duel battle is performed between the players. In the end the winner is announced.
+dictionary individually. Using the concept of Object Oriented Programming in python, a duel battle is performed between the players. In the end, the winner is announced.
 
 <br>
 
