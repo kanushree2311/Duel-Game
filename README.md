@@ -8,7 +8,7 @@ dictionary individually. Using the concept of Object Oriented Programming in pyt
 <br>
 
 ## Tech Stack used: 
-Python
+Object Oriented Programming with Python
 
 ## How the game goes on:
 Any 2 players can can be chosen- King, Queen, Knight, Joker. 
